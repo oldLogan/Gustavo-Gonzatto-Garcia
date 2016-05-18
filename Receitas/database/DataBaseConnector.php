@@ -1,5 +1,5 @@
 <?php
-class DataBaseConnector
+class DatabaseConnector
 {
 	private $ip;
 	private $db_name;

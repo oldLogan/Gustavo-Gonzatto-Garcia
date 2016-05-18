@@ -2,16 +2,16 @@
 	class Client
 	{
 		private $name;
-		private $lastname;
+		private $lastName;
 		private $cpf;
 		private $rg;
 		private $data;
 		private $salary;
 		
 		
-		public function __construct ($name, $lastname, $cpf, $rg, $data, $salary){
+		public function __construct ($name, $lastName, $cpf, $rg, $data, $salary){
 			$this->setName($name);
-			$this->setLastName($lastname);
+			$this->setLastName($lastName);
 			$this->setCpf($cpf);
 			$this->setRg($rg);
 			$this->setDate($data);
@@ -24,8 +24,8 @@
 			$this->name = $name;
 		}
 		
-		public function setLastName ($lastname){
-			$this->lastname = $lastname;
+		public function setLastName ($lastName){
+			$this->lastName = $lastName;
 		}
 		
 		public function setCpf ($cpf){
@@ -46,27 +46,27 @@
 		
 		//GET
 		public function getName (){
-			echo $name;
+			return $this->name;
 		}
 		
 		public function getLastName (){
-			echo $lastname;
+			return $this->lastName;
 		}
 		
 		public function getCpf (){
-			echo $cpf;
+			return $this->cpf;
 		}
 		
 		public function getRg (){
-			echo $rg;
+			return $this->rg;
 		}
 		
 		public function getDate(){
-			echo $data;
+			return $this->data;
 		}
 		
 		public function getSalary(){
-			echo $salary;
+			return $this->salary;
 		}
 		
 		

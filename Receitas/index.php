@@ -1,6 +1,6 @@
-<?php 
+<?php
 include "util/RequestRouter.php";
-
-echo json_encode((new RequestRouter)->route());
-
-?>
+	
+   echo json_encode((new RequestRouter)->route());
+   
+ ?>
