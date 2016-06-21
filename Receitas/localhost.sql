@@ -32,8 +32,8 @@ USE `receita`;
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `cpf` varchar(11) NOT NULL,
+  `lastName` varchar(50) NOT NULL,
+  `tipo` varchar(11) NOT NULL,
   `rg` int(7) NOT NULL,
   `data` date NOT NULL,
   `salary` int(11) NOT NULL
@@ -47,7 +47,6 @@ CREATE TABLE `client` (
 
 CREATE TABLE `evaluation` (
   `id` int(11) NOT NULL,
-  `nameDegustador` varchar(30) NOT NULL,
   `nameRecipe` varchar(30) NOT NULL,
   `date` date NOT NULL,
   `grade` int(11) NOT NULL
@@ -76,7 +75,7 @@ CREATE TABLE `recipe` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `lastName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `birthdate` date NOT NULL,
   `phone` varchar(50) NOT NULL,

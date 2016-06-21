@@ -4,14 +4,13 @@ include_once "model/Evaluation.php";
 include_once "database/DatabaseConnector.php";
 class EvaluationController
 {
-	private $requiredParameters = array('nameDegustador', 'nameRecipe', 'data', 'grade');
+	private $requiredParameters = array('nameRecipe', 'data', 'grade');
 
 	public function register($request)
 	{
 		$params = $request->get_params();
 		if($this->isValid($params)){
-		$evaluation = new Evaluation($params["nameDegustador"],
-				 $params["nameRecipe"],
+		$evaluation = new Evaluation($params["nameRecipe"],
 				 $params["data"],
 				 $params["grade"]);
 		$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
@@ -25,8 +24,7 @@ class EvaluationController
 	}
 	private function generateInsertQuery($evaluation)
 	{
-		$query =  "INSERT INTO evaluation (nameDegustador, nameRecipe, data, grade) VALUES ('".$evaluation->getNameDegustador()."','".
-					$evaluation->getNameRecipe()."','".
+		$query =  "INSERT INTO evaluation (nameRecipe, data, grade) VALUES ('".$evaluation->getNameRecipe()."','".
 					$evaluation->getDate()."','".
 					$evaluation->getGrade()."')";
 		return $query;						
@@ -55,10 +53,8 @@ class EvaluationController
 
 	public function update($request)
 	{
-		if(!empty($_GET["id"]) && !empty($_GET["nameDegustador"]) && !empty($_GET["nameRecipe"]) && !empty($_GET["data"]) 
-								&& !empty($_GET["grade"])) {
+		if(!empty($_GET["id"]) && !empty($_GET["nameRecipe"]) && !empty($_GET["data"]) && !empty($_GET["grade"])) {
 
-			$nameDegustador = addslashes(trim($_GET["nameDegustador"]));
 			$nameRecipe = addslashes(trim($_GET["nameRecipe"]));
 			$data = addslashes(trim($_GET["data"]));
 			$grade = addslashes(trim($_GET["grade"]));
@@ -66,16 +62,15 @@ class EvaluationController
 			$params = $request->get_params();
 			$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
 			$conn = $db->getConnection();
-			$result = $conn->prepare("UPDATE evaluation SET nameDegustador=:nameDegustador, nameRecipe=:nameRecipe, data=:data, 
-									  grade=:grade WHEREid=:id");
-			$result->bindValue(":nameDegustador", $nameDegustador);
+			$result = $conn->prepare("UPDATE evaluation SET nameRecipe=:nameRecipe, data=:data, grade=:grade WHEREid=:id");
+
 			$result->bindValue(":nameRecipe", $nameRecipe);
 			$result->bindValue(":data", $data);
 			$result->bindValue(":grade", $grade);
 			$result->bindValue(":product", $product);
 			$result->execute();
 			if ($result->rowCount() > 0){
-				echo "Notta alterada com sucesso!";
+				echo "Nota alterada com sucesso!";
 			} else {
 				echo "Nota não atualizada";
 			}

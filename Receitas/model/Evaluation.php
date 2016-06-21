@@ -1,24 +1,17 @@
 <?php
 	class Evaluation
 	{
-		private $nameDegustador;
 		private $nameRecipe;
 		private $data;
 		private $grade;
 		
-		public function __construct ($nameDegustador, $nameRecipe, $data, $grade){
-			$this->setNameDegustador($nameDegustador);
+		public function __construct ($nameRecipe, $data, $grade){
 			$this->setNameRecipe($nameRecipe);
 			$this->setDate($data);
 			$this->setGrade($grade);
 		}
 		
 		//SET
-		
-		public function setNameDegustador ($nameDegustador){
-			$this->nameDegustador = $nameDegustador;
-		}
-		
 		public function setNameRecipe ($nameRecipe){
 			$this->nameRecipe = $nameRecipe;
 		}
@@ -32,10 +25,6 @@
 		}
 		
 		//GET
-		public function getNameDegustador (){
-			return $this->nameDegustador;
-		}
-		
 		public function getNameRecipe (){
 			return $this->nameRecipe;
 		}

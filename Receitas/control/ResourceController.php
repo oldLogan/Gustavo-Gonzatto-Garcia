@@ -1,7 +1,6 @@
 <?php
 include_once "model/Request.php";
 include_once "control/UserController.php";
-include_once "control/ClientController.php";
 include_once "control/EvaluationController.php";
 include_once "control/RecipeController.php";
 include_once "control/UserController.php";
@@ -10,7 +9,6 @@ class ResourceController
 {
 	private $controlMap = 
 	[
-		"client" => "ClientController",
 		"user" => "UserController",
 		"evaluation" => "EvaluationController",
 		"recipe" => "RecipeController",

@@ -33,19 +33,19 @@
 		
 		//GET
 		public function getNameRecipe (){
-			echo $nameRecipe;
+			return $this->nameRecipe;
 		}
 		
 		public function getNameChef (){
-			echo $nameChef;
+			return $this->nameChef;
 		}
 		
 		public function getDate (){
-			echo $data;
+			return $this->data;
 		}
 		
 		public function getCategory(){
-			echo $category;
+			return $this->category;
 		}
 		
 		

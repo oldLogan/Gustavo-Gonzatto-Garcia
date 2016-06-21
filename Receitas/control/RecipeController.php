@@ -47,6 +47,18 @@ class RecipeController
 		return substr($criteria, 0, -4);	
 	}
 
+
+	public function update($request)
+	{
+		$params = $request->get_params();
+		$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
+		$conn = $db->getConnection();
+		foreach ($params as $key => $value) {
+			$result = $conn->query("UPDATE recipe SET " . $key . " =  '" . $value . "' WHERE nameChef = '" . $params["nameChef"] . "'");
+		}
+		return $result;
+	}
+
 	public function delete ($request)
 	{
 		$params = $request->get_params();
@@ -66,5 +78,14 @@ class RecipeController
 			$criteria = $criteria.$key." = '".$value."' AND ";
 		}
 		return substr($criteria, 0, -4);	
+	}
+
+	private function isValid($parameters)
+	{
+		$keys = array_keys($parameters);
+		$diff1 = array_diff($keys, $this->requiredParameters);
+		$diff2 = array_diff($this->requiredParameters, $keys);
+		if (empty($diff2) && empty($diff1))
+			return false;
 	}
 }
