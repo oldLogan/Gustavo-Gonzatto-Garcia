@@ -53,28 +53,13 @@ class EvaluationController
 
 	public function update($request)
 	{
-		if(!empty($_GET["id"]) && !empty($_GET["nameRecipe"]) && !empty($_GET["data"]) && !empty($_GET["grade"])) {
-
-			$nameRecipe = addslashes(trim($_GET["nameRecipe"]));
-			$data = addslashes(trim($_GET["data"]));
-			$grade = addslashes(trim($_GET["grade"]));
-
-			$params = $request->get_params();
-			$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
-			$conn = $db->getConnection();
-			$result = $conn->prepare("UPDATE evaluation SET nameRecipe=:nameRecipe, data=:data, grade=:grade WHEREid=:id");
-
-			$result->bindValue(":nameRecipe", $nameRecipe);
-			$result->bindValue(":data", $data);
-			$result->bindValue(":grade", $grade);
-			$result->bindValue(":product", $product);
-			$result->execute();
-			if ($result->rowCount() > 0){
-				echo "Nota alterada com sucesso!";
-			} else {
-				echo "Nota não atualizada";
-			}
+		$params = $request->get_params();
+		$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
+		$conn = $db->getConnection();
+		foreach ($params as $key => $value) {
+			$result = $conn->query("UPDATE evaluation SET " . $key . " =  '" . $value . "' WHERE id = '" . $params["id"] . "'");
 		}
+		return $result;
 	}
 
 	public function delete ($request)

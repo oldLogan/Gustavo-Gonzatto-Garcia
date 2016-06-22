@@ -63,34 +63,13 @@ class UserController
 
 	public function update($request)
 	{
-		if(!empty($_GET["id"]) && !empty($_GET["name"]) && !empty($_GET["lastName"]) && !empty($_GET["tipo"]) && !empty($_GET["rg"]) && !empty($_GET["data"]) && !empty($_GET["salary"])&& !empty($_GET["pass"])){
-			
-			$name = addslashes(trim($_GET["name"]));
-			$lastName = addslashes(trim($_GET["lastName"]));
-			$tipo = addslashes(trim($_GET["tipo"]));
-			$rg = addslashes(trim($_GET["rg"]));
-			$data = addslashes(trim($_GET["data"]));
-			$salary = addslashes(trim($_GET["salary"]));
-			$pass = addslashes(trim($_GET["pass"]));
-
-			$params = $request->get_params();
-			$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
-			$conn = $db->getConnection();
-			$result = $conn->prepare("UPDATE user SET name=:name, lastName=:lastName, tipo=:tipo, rg=:rg, data=:data, salary=:salary, pass=:pass WHERE id=:id");
-			$result->bindValue(":name", $name);
-			$result->bindValue(":lastName", $lastName);
-			$result->bindValue(":tipo", $tipo);
-			$result->bindValue(":rg", $rg);
-			$result->bindValue(":data", $data);
-			$result->bindValue(":salary", $salary);
-			$result->bindValue(":pass", $pass);
-			$result->execute();
-			if ($result->rowCount() > 0){
-				echo "Usuario alterado com sucesso!";
-			} else {
-				echo "Usuario não atualizado";
-			}
+		$params = $request->get_params();
+		$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
+		$conn = $db->getConnection();
+		foreach ($params as $key => $value) {
+			$result = $conn->query("UPDATE user SET " . $key . " =  '" . $value . "' WHERE id = '" . $params["id"] . "'");
 		}
+		return $result;
 	}
 
 	public function delete ($request)

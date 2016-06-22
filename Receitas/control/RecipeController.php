@@ -54,7 +54,7 @@ class RecipeController
 		$db = new DatabaseConnector("localhost", "receita", "mysql", "", "root", "");
 		$conn = $db->getConnection();
 		foreach ($params as $key => $value) {
-			$result = $conn->query("UPDATE recipe SET " . $key . " =  '" . $value . "' WHERE nameChef = '" . $params["nameChef"] . "'");
+			$result = $conn->query("UPDATE recipe SET " . $key . " =  '" . $value . "' WHERE id = '" . $params["id"] . "'");
 		}
 		return $result;
 	}

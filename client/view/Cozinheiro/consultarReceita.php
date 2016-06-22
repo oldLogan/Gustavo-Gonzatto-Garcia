@@ -18,7 +18,7 @@ $request_response = json_decode($response->body);
 
 	}
 	else{
-		header('location:../../login2.html');
+		header('location:consultarReceita.html');
 	}
 }
 else{
