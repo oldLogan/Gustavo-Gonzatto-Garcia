@@ -3,7 +3,7 @@ include('../../httpful.phar');
 
 session_start();
 
-$url = "http://localhost/Receitas/recipe/nameRecipe=".$_SESSION['nameRecipe']
+$url = "http://localhost/Receitas/recipe/nameRecipe=".$_POST['nameRecipe']
     ."&nameChef=".$_POST['nameChef']
     ."&category=".$_POST['category'];
 
